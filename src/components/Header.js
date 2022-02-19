@@ -1,8 +1,19 @@
 import { Avatar, IconButton } from '@material-ui/core'
 import { Add, ExpandMore, Flag, Forum, Home, Notifications, Search, StorefrontOutlined, SubscriptionsOutlined, SupervisedUserCircleSharp } from '@material-ui/icons'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { actionType } from '../reducer'
+import { useStateValue } from '../StateProvider'
 import './Header.css'
+
+
+
+
 const Header = () => {
+
+    const [ {user}, dispatch] =  useStateValue()
+
+  
+ 
   return (
     <div className="header">
         <div className="header_left">
@@ -31,8 +42,8 @@ const Header = () => {
         </div>
         <div className="header_right">
             <div className="header_info">
-                <Avatar/>
-                <h3>Alioune</h3>
+            <Avatar src={user.photoURL}/>
+                <h3>{user.displayName}</h3>
             </div>
                 <IconButton>
                     <Add/>
